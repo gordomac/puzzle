@@ -252,6 +252,10 @@ window.onload = function init()
     document.getElementById( "save" ).onclick = function () {
 	    	if(won == 0){
 			document.getElementsById("link").removeAttribute("hidden"); 
+			console.log("WE DID IT");
+		}
+		else{
+			console.log("NVM");
 		}
 		var saveString1 = "";
 		var saveString2 = "";
