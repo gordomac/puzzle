@@ -642,7 +642,7 @@ function checkFinish(){
 		}
 	}
 	if(finished == 0){
-		alert("Congratulations! You've solved it!");
+		alert("Congratulations! You've solved it! You did so amazingly fantastic, you should save the result");
 		won = 0;
 		//document.getElementsById("link").removeAttribute("hidden"); 
 		//document.getElementById( "save" ).onclick = function () {};
