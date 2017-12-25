@@ -637,6 +637,8 @@ function checkFinish(){
 	}
 	if(finished == 0){
 		alert("Congratulations! You've solved it!");
+		document.getElementsById("link").removeAttribute("hidden"); 
+		//document.getElementById( "save" ).onclick = function () {};
 	}
 }
 //front clockwise
