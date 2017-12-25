@@ -2,7 +2,7 @@
 
 var canvas;
 var gl;
-
+var won = 1;
 var NumVertices  = 36*27;
 
 var points = [];
@@ -89,7 +89,6 @@ window.onload = function init()
 			direction2[count] = direction2[count]*-1;
 		}
     };
-	
 	document.addEventListener("keydown", function(event) {
 		var x = event.keyCode;
 		var cenFacesCoord = [];
@@ -251,6 +250,9 @@ window.onload = function init()
 		}
     };
     document.getElementById( "save" ).onclick = function () {
+	    	if(won == 0){
+			document.getElementsById("link").removeAttribute("hidden"); 
+		}
 		var saveString1 = "";
 		var saveString2 = "";
         for(var count = 0; count < 27; count++){
@@ -637,7 +639,8 @@ function checkFinish(){
 	}
 	if(finished == 0){
 		alert("Congratulations! You've solved it!");
-		document.getElementsById("link").removeAttribute("hidden"); 
+		won = 0;
+		//document.getElementsById("link").removeAttribute("hidden"); 
 		//document.getElementById( "save" ).onclick = function () {};
 	}
 }
