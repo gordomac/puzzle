@@ -1,1 +1,128 @@
-<h1>Hello Kelly! </h1>
+<!DOCTYPE html>
+<html>
+
+<script id="vertex-shader" type="x-shader/x-vertex">
+attribute  vec4 vPosition;
+attribute  vec4 vColor;
+varying vec4 fColor;
+uniform vec3 theta;
+uniform mat4 rotMatrix;
+uniform mat4 globalRotMatrix;
+vec3 angles = radians( theta );
+// quaternion multiplier
+vec4 multq(vec4 a, vec4 b)
+{
+   return(vec4(a.x*b.x - dot(a.yzw, b.yzw), a.x*b.yzw+b.x*a.yzw+cross(b.yzw, a.yzw)));
+}
+// inverse quaternion
+vec4 invq(vec4 a)
+{
+   return(vec4(a.x, -a.yzw)/dot(a,a));
+}
+void main()
+{
+	fColor = vColor;
+	gl_Position = vPosition * rotMatrix * globalRotMatrix;
+}
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+precision mediump float;
+varying vec4 fColor;
+void
+main()
+{
+    gl_FragColor = fColor;
+}
+</script>
+
+<script type="text/javascript" src="webgl-utils.js"></script>
+<script type="text/javascript" src="initShaders.js"></script>
+<script type="text/javascript" src="MV.js"></script>
+<script type="text/javascript" src="rubix.js"></script>
+
+<body>
+<div>
+Randomizing Steps  0 <input id="randomize" type="range"
+ min= "0" max= "60" step = "1" value = "0" />
+ 60
+</div>
+<canvas id="gl-canvas" width="512"" height="512">
+Oops ... your browser doesn't support the HTML5 canvas element
+</canvas>
+<br/>
+<table>
+  <tr>
+    <th>Command</th>
+    <th>Key</th>
+  </tr>
+  <tr>
+    <td>Rotate Cube on Z axis</td>
+    <td>Q and E</td>
+  </tr>
+  <tr>
+    <td>Rotate Cube on Y axis</td>
+    <td>A and D</td>
+  </tr>
+  <tr>
+    <td>Rotate Cube on X axis</td>
+    <td>W and S</td>
+  </tr>
+  <tr>
+    <td>Rotate Front</td>
+    <td>T</td>
+  </tr>
+  <tr>
+    <td>Rotate SideMiddle</td>
+    <td>Y</td>
+  </tr>
+  <tr>
+    <td>Rotate Back</td>
+    <td>U</td>
+  </tr>
+  <tr>
+    <td>Rotate Left</td>
+    <td>G</td>
+  </tr>
+  <tr>
+    <td>Rotate Middle</td>
+    <td>H</td>
+  </tr>
+  <tr>
+    <td>Rotate Right</td>
+    <td>J</td>
+  </tr>
+  <tr>
+    <td>Rotate Bottom</td>
+    <td>B</td>
+  </tr>
+  <tr>
+    <td>Rotate FrontMiddle</td>
+    <td>N</td>
+  </tr>
+  <tr>
+    <td>Rotate Top</td>
+    <td>M</td>
+  </tr>
+</table>
+<br/>
+Load cube by copying in string from console and pressing enter
+<br/>
+<input type="text" size="50" id = "loadString"> 
+<!--<button id= "randomize">Randomize</button>-->
+<button id= "save">Save Cube to Console</button>
+<button id="direction">Change Direction</button>
+<br/>
+<button id="front">Rotate Front</button>
+<button id="sideMiddle">Rotate SideMiddle</button>
+<button id="back">Rotate Back</button>
+<br/>
+<button id="left">Rotate Left</button>
+<button id="middle">Rotate Middle</button>
+<button id="right">Rotate Right</button>
+<br/>
+<button id="bottom">Rotate Bottom</button>
+<button id="frontMiddle">Rotate FrontMiddle</button>
+<button id="top">Rotate Top</button>
+</body>
+</html>
