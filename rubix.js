@@ -251,7 +251,7 @@ window.onload = function init()
     };
     document.getElementById( "save" ).onclick = function () {
 	    	if(won == 0){
-			document.getElementsById("link").removeAttribute("hidden"); 
+			document.getElementById("link").removeAttribute("hidden"); 
 			console.log("WE DID IT");
 		}
 		else{
